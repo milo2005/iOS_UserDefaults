@@ -10,9 +10,18 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    @IBOutlet var txt: UITextField!
+    @IBOutlet var txtSaved: UILabel!
+     var userD:NSUserDefaults!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        userD = NSUserDefaults()
+        
+        let data:String? = userD.objectForKey("data") as? String
+        txtSaved.text = data
+        
+
     }
 
     override func didReceiveMemoryWarning() {
@@ -20,6 +29,11 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    @IBAction func save(sender: AnyObject) {
+        
+        userD.setObject(txt.text, forKey: "data")
+        
+    }
 
 }
 
